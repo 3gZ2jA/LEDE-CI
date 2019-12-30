@@ -34,11 +34,20 @@ jobs:
         git config --global user.email "lqbz@live.com"
         git config --global user.name "3gZ2jA"
 
+    - name: ls
+      run:  ls
+
+    - name: Move wk
+      run: .github .github.bak
+
     - name: Load upstream commits
       run: git pull https://github.com/coolsnowwolf/lede.git --no-edit --strategy-option ours --allow-unrelated-histories
 
     - name: Remove wk
       run: rm -rf ./.github
+
+    - name: Move wk
+      run: .github.bak .github 
 
     - name: Push Commits
       env:
