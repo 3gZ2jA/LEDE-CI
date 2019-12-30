@@ -40,6 +40,9 @@ jobs:
     - name: Move wk
       run: mv .github .github.bak
 
+    - name: ls
+      run:  ls -la
+
     - name: Load upstream commits
       run: git pull https://github.com/coolsnowwolf/lede.git --no-edit --strategy-option ours --allow-unrelated-histories
 
@@ -48,6 +51,9 @@ jobs:
 
     - name: Move wk
       run: mv .github.bak .github 
+
+    - name: ls
+      run:  ls -la
 
     - name: Push Commits
       env:
