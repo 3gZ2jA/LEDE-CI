@@ -10,9 +10,9 @@
 name: OpenWrt-CI
 
 on:
-  #push:
-  #  branches: 
-  #    - master
+  push:
+    branches: 
+      - master
   # schedule:
   #   - cron: 0 20 * * *
   # release:
@@ -197,7 +197,6 @@ jobs:
         run: |
           make download -j8
           find ./dl/ -size -1024c -exec rm -f {} \;
-          df -h
 
       - name: Compile firmware
         run: |
