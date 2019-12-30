@@ -49,9 +49,6 @@ jobs:
     - name: Remove wk
       run: rm -rf ./.github
 
-    - name: Remove wk
-      run: rm -rf .github/workflows
-
     - name: Move wk
       run: mv .github.bak .github 
 
