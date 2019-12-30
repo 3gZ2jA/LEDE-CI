@@ -35,7 +35,10 @@ jobs:
         git config --global user.name "3gZ2jA"
 
     - name: Load upstream commits
-      run: git pull https://github.com/coolsnowwolf/lede.git --no-edit --strategy-option ours --allow-unrelated-histories
+      run: git pull https://github.com/coolsnowwolf/lede.githttps://github.com/coolsnowwolf/lede.git.git --no-edit --strategy-option ours --allow-unrelated-histories
+
+    - name: Remove wk
+      run: rm -rf ./.github
 
     - name: Push Commits
       env:
