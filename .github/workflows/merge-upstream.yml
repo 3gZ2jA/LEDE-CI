@@ -49,11 +49,14 @@ jobs:
     - name: Remove wk
       run: rm -rf ./.github
 
+    - name: Remove wk
+      run: rm -rf .github/workflows
+
     - name: Move wk
       run: mv .github.bak .github 
 
     - name: ls
-      run:  ls -la
+      run:  ls -la .github/workflows
 
     - name: Push Commits
       env:
