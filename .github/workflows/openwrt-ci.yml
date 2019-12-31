@@ -251,7 +251,7 @@ jobs:
       - name: Zip files
         run: |
           echo "::set-env name=TAG::$(date "+%Y-%m-%dT%H-%M-%S")"
-          zip config.zip config.seed
+          zip ./bin/targets/config.zip ./bin/targets/config.seed
           zip ./bin/targets/openwrt-x86-64-combined-squashfs.zip ./bin/targets/openwrt-x86-64-combined-squashfs.img
           zip ./bin/targets/openwrt-x86-64-rootfs-squashfs.zip ./bin/targets/openwrt-x86-64-rootfs-squashfs.img 
 
