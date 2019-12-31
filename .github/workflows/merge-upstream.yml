@@ -44,7 +44,10 @@ jobs:
       run:  ls -la
 
     - name: Load upstream commits
-      run: git pull https://github.com/coolsnowwolf/lede.git --no-edit --strategy-option ours --allow-unrelated-histories
+      run : |
+        git remote add offical https://github.com/coolsnowwolf/lede.git
+        git fetch offical
+        git pull offical master
 
     - name: Remove wk
       run: rm -rf ./.github
@@ -58,4 +61,4 @@ jobs:
     - name: Push Commits
       env:
         DOWNSTREAM_BRANCH: master
-      run: git push origin $DOWNSTREAM_BRANCH
+      run: git push origin $DOWNSTREAM_BRANCH --tags  
