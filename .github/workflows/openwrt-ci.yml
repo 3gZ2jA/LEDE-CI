@@ -223,7 +223,7 @@ jobs:
         run: |
           mkdir ./build_dir
           mkdir -p ./bin/targets/packages
-          touch ./bin/config.seed
+          touch ./bin/targets/config.seed
           touch ./bin/targets/openwrt-x86-64-combined-squashfs.img
           touch ./bin/targets/openwrt-x86-64-rootfs-squashfs.img 
           du -h --max-depth=1 ./ --exclude=build_dir --exclude=bin
