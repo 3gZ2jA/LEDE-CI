@@ -222,7 +222,7 @@ jobs:
       - name: Fake compile firmware
         run: |
           mkdir ./build_dir
-          mkdir ./bin/targets/packages
+          mkdir -p ./bin/targets/packages
           touch ./bin/config.seed
           touch ./bin/targets/openwrt-x86-64-combined-squashfs.img
           touch ./bin/targets/openwrt-x86-64-rootfs-squashfs.img 
