@@ -39,17 +39,17 @@ jobs:
           df -h
           echo "======================="
 
-      - name: Space cleanup
-        env:
-          DEBIAN_FRONTEND: noninteractive
-        run: |
-          docker rmi `docker images -q`
-          sudo rm -rf /usr/share/dotnet /etc/mysql /etc/php /etc/apt/sources.list.d
-          sudo -E apt-get -y purge azure-cli ghc* zulu* hhvm llvm* firefox google* dotnet* powershell openjdk* mysql* php*
-          sudo -E apt-get update
-          sudo -E apt-get -y install build-essential asciidoc binutils bzip2 gawk gettext git libncurses5-dev libz-dev patch unzip zlib1g-dev lib32gcc1 libc6-dev-i386 subversion flex uglifyjs git-core gcc-multilib p7zip p7zip-full msmtp libssl-dev texinfo libglib2.0-dev xmlto qemu-utils upx libelf-dev autoconf automake libtool autopoint device-tree-compiler
-          sudo -E apt-get -y autoremove --purge
-          sudo -E apt-get clean
+      #- name: Space cleanup
+      #  env:
+      #    DEBIAN_FRONTEND: noninteractive
+      #  run: |
+      #    docker rmi `docker images -q`
+      #    sudo rm -rf /usr/share/dotnet /etc/mysql /etc/php /etc/apt/sources.list.d
+      #    sudo -E apt-get -y purge azure-cli ghc* zulu* hhvm llvm* firefox google* dotnet* powershell openjdk* mysql* php*
+      #    sudo -E apt-get update
+      #    sudo -E apt-get -y install build-essential asciidoc binutils bzip2 gawk gettext git libncurses5-dev libz-dev patch unzip zlib1g-dev lib32gcc1 libc6-dev-i386 subversion flex uglifyjs git-core gcc-multilib p7zip p7zip-full msmtp libssl-dev texinfo libglib2.0-dev xmlto qemu-utils upx libelf-dev autoconf automake libtool autopoint device-tree-compiler
+      #    sudo -E apt-get -y autoremove --purge
+      #    sudo -E apt-get clean
 
           # sudo mkdir -p -m 777 /mnt/openwrt/bin /mnt/openwrt/build_dir/host /mnt/openwrt/build_dir/hostpkg /mnt/openwrt/dl /mnt/openwrt/feeds /mnt/openwrt/staging_dir
           # ln -s /mnt/openwrt/bin ./bin
@@ -67,10 +67,10 @@ jobs:
           df -h
           echo "======================="
 
-      - name: Update feeds
-        run: |
-          ./scripts/feeds update -a
-          ./scripts/feeds install -a
+      #- name: Update feeds
+      #  run: |
+      #    ./scripts/feeds update -a
+      #    ./scripts/feeds install -a
 
       - name: Generate configuration file
         run: |
@@ -222,7 +222,7 @@ jobs:
       - name: Fake compile firmware
         run: |
           mkdir ./build_dir
-          mkdir ./bin
+          mkdir ./bin/targets/packages
           touch ./bin/config.seed
           touch ./bin/targets/openwrt-x86-64-combined-squashfs.img
           touch ./bin/targets/openwrt-x86-64-rootfs-squashfs.img 
