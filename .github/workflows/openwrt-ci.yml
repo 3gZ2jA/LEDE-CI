@@ -116,6 +116,9 @@ jobs:
           CONFIG_TARGET_x86_64=y
           CONFIG_TARGET_x86_64_Generic=y
           CONFIG_LUCI_LANG_zh-cn=y
+          CONFIG_PACKAGE_kmod-kvm-amd=y
+          CONFIG_PACKAGE_kmod-kvm-intel=y
+          CONFIG_PACKAGE_kmod-kvm-x86=y
           EOF
 
           # 固件压缩:
@@ -177,9 +180,10 @@ jobs:
           # CONFIG_PACKAGE_luci-app-verysync=y
           # CONFIG_PACKAGE_luci-app-webadmin=y
           # CONFIG_PACKAGE_luci-app-wireguard=y
-          # CONFIG_PACKAGE_luci-app-wrtbwmon=y
+          CONFIG_PACKAGE_luci-app-wrtbwmon=y
           CONFIG_PACKAGE_luci-app-commands=y
-          CONFIG_PACKAGE_qemu-ga=y
+          CONFIG_PACKAGE_luci-app-statistics=y
+          CONFIG_PACKAGE_luci-app-vnstat=y
           EOF
 
           # LuCI主题:
@@ -197,6 +201,13 @@ jobs:
           CONFIG_PACKAGE_tree=y
           CONFIG_PACKAGE_vim-fuller=y
           CONFIG_PACKAGE_wget=y
+          CONFIG_PACKAGE_qemu-ga=y
+          CONFIG_PACKAGE_unrar=y
+          CONFIG_PACKAGE_unzip=y
+          CONFIG_PACKAGE_virtio-console-helper=y
+          CONFIG_PACKAGE_vnstat=y
+          CONFIG_PACKAGE_vnstati=y
+          CONFIG_PACKAGE_zip=y
           EOF
 
           # 取消编译VMware镜像以及镜像填充 (不要删除被缩进的注释符号):
