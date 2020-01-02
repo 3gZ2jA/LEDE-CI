@@ -335,6 +335,7 @@ jobs:
           asset_name: openwrt-x86-64-rootfs-squashfs.zip
           asset_content_type: application/zip
 
+
       - name: Upload openwrt-x86-64-uefi-gpt-squashfs
         uses: actions/upload-release-asset@v1.0.1
         env:
