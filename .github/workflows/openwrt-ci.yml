@@ -115,6 +115,7 @@ jobs:
           CONFIG_TARGET_x86=y
           CONFIG_TARGET_x86_64=y
           CONFIG_TARGET_x86_64_Generic=y
+          CONFIG_LUCI_LANG_zh-cn=y
           EOF
 
           # 固件压缩:
@@ -130,6 +131,8 @@ jobs:
           # IPv6支持:
           cat >> .config <<EOF
           CONFIG_PACKAGE_dnsmasq_full_dhcpv6=y
+          CONFIG_PACKAGE_ip6tables=y
+          CONFIG_PACKAGE_iptables-mod-extra=y
           CONFIG_PACKAGE_ipv6helper=y
           EOF
 
@@ -175,6 +178,8 @@ jobs:
           # CONFIG_PACKAGE_luci-app-webadmin=y
           # CONFIG_PACKAGE_luci-app-wireguard=y
           # CONFIG_PACKAGE_luci-app-wrtbwmon=y
+          CONFIG_PACKAGE_luci-app-commands=y
+          CONFIG_PACKAGE_qemu-ga=y
           EOF
 
           # LuCI主题:
@@ -245,16 +250,49 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@master
         with:
-          name: OpenWrt firmware
+          name: targets
           path: ./bin/targets/x86/64/
 
+      - name: Upload config.seed
+        uses: actions/upload-artifact@master
+        with:
+          name: config.seed
+          path: ./bin/targets/x86/64/config.seed
+
+      - name: Upload openwrt-x86-64-combined-squashfs
+        uses: actions/upload-artifact@master
+        with:
+          name: openwrt-x86-64-combined-squashfs
+          path: ./bin/targets/x86/64/openwrt-x86-64-combined-squashfs.img
+
+      - name: Upload openwrt-x86-64-rootfs-squashfs
+        uses: actions/upload-artifact@master
+        with:
+          name: openwrt-x86-64-rootfs-squashfs
+          path: ./bin/targets/x86/64/openwrt-x86-64-rootfs-squashfs.img
+
+      - name: Upload openwrt-x86-64-uefi-gpt-squashfs
+        uses: actions/upload-artifact@master
+        with:
+          name: openwrt-x86-64-uefi-gpt-squashfs
+          path: ./bin/targets/x86/64/openwrt-x86-64-uefi-gpt-squashfs.img
+  release:
+    name: Release
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v1
+        with:
+          name: targets
+      
       - name: Zip files
         run: |
           echo "::set-env name=TAG::$(date "+%Y-%m-%dT%H-%M-%S")"
-          zip ./bin/targets/x86/64/config.zip ./bin/targets/x86/64/config.seed
-          zip ./bin/targets/x86/64/openwrt-x86-64-combined-squashfs.zip ./bin/targets/x86/64/openwrt-x86-64-combined-squashfs.img
-          zip ./bin/targets/x86/64/openwrt-x86-64-rootfs-squashfs.zip ./bin/targets/x86/64/openwrt-x86-64-rootfs-squashfs.img
-          zip ./bin/targets/x86/64/openwrt-x86-64-uefi-gpt-squashfs.zip ./bin/targets/x86/64/openwrt-x86-64-uefi-gpt-squashfs.img 
+          zip ./targets/config.zip ./targets/config.seed
+          zip ./targets/openwrt-x86-64-combined-squashfs.zip ./targets/openwrt-x86-64-combined-squashfs.img
+          zip ./targets/openwrt-x86-64-rootfs-squashfs.zip ./targets/openwrt-x86-64-rootfs-squashfs.img
+          zip ./targets/openwrt-x86-64-uefi-gpt-squashfs.zip ./targets/openwrt-x86-64-uefi-gpt-squashfs.img 
 
       - name: Create Release
         id: create_release
@@ -273,7 +311,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
-          asset_path: ./bin/targets/x86/64/config.zip
+          asset_path: ./targets/config.zip
           asset_name: config.zip
           asset_content_type: application/zip
 
@@ -283,7 +321,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
-          asset_path: ./bin/targets/x86/64/openwrt-x86-64-combined-squashfs.zip
+          asset_path: ./targets/openwrt-x86-64-combined-squashfs.zip
           asset_name: openwrt-x86-64-combined-squashfs.zip
           asset_content_type: application/zip
 
@@ -293,7 +331,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
-          asset_path: ./bin/targets/x86/64/openwrt-x86-64-rootfs-squashfs.zip
+          asset_path: ./targets/openwrt-x86-64-rootfs-squashfs.zip
           asset_name: openwrt-x86-64-rootfs-squashfs.zip
           asset_content_type: application/zip
 
@@ -303,8 +341,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
-          asset_path: ./bin/targets/x86/64/openwrt-x86-64-uefi-gpt-squashfs.zip
+          asset_path: ./targets/openwrt-x86-64-uefi-gpt-squashfs.zip
           asset_name: openwrt-x86-64-uefi-gpt-squashfs.zip
           asset_content_type: application/zip
-
-
