@@ -69,7 +69,7 @@ o:value("1", translate("Use Pdnsd tcp query and cache"))
 o:value("0", translate("Use Local DNS Service listen port 5335"))
 o.default = 1
 
-o = s:option(ListValue, "tunnel_forward", translate("Anti-pollution DNS Server"))
+o = s:option(Value, "tunnel_forward", translate("Anti-pollution DNS Server"))
 o:value("8.8.4.4:53", translate("Google Public DNS (8.8.4.4)"))
 o:value("8.8.8.8:53", translate("Google Public DNS (8.8.8.8)"))
 o:value("208.67.222.222:53", translate("OpenDNS (208.67.222.222)"))
@@ -86,5 +86,6 @@ o:value("114.114.115.115:53", translate("Oversea Mode DNS-2 (114.114.115.115)"))
 o:value("192.168.6.83:53", translate("Local DNS-1 (192.168.6.83)"))
 o:value("192.168.6.91:53", translate("Local DNS-2 (192.168.6.91)"))
 o:depends("pdnsd_enable", "1")
+o.description = translate("Custom DNS Server format as IP:PORT (default: 8.8.4.4:53)")
 
 return m
