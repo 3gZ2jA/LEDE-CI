@@ -18,12 +18,16 @@ on:
   # release:
   #   types: [published]
 
+env:
+  TZ: Asia/Shanghai
+
 jobs:
 
   build:
 
     runs-on: ubuntu-latest
-
+    env:
+      TZ: Asia/Shanghai
     steps:
 
       - name: Checkout
@@ -419,6 +423,8 @@ jobs:
     name: Release
     needs: build
     runs-on: ubuntu-latest
+    env:
+      TZ: Asia/Shanghai
     steps:
       - name: Download artifact
         uses: actions/download-artifact@v1
