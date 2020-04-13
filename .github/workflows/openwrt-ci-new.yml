@@ -275,7 +275,7 @@ jobs:
           CONFIG_PACKAGE_luci-app-zerotier=y
 
 
-          CONFIG_PACKAGE_luci-lib-iptparser=y
+          # CONFIG_PACKAGE_luci-lib-iptparser is not set
           CONFIG_PACKAGE_luci-ssl-openssl=y
           CONFIG_PACKAGE_luci-theme-bootstrap=y
           CONFIG_PACKAGE_nano=y
