@@ -13,8 +13,6 @@
 =======
 
 
----
-
 > ### 这个CI脚本和[P3TERX/Actions-OpenWrt](https://github.com/P3TERX/Actions-OpenWrt)的同样是云编译, 有什么不同?
 
 这个 CI 脚本可以帮助你在你的 OpenWrt 分支下构建当前库的Op固件, 无需上传配置文件, 不依赖外挂配置脚本, 真正的一次配置终生使用.
