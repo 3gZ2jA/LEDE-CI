@@ -36,6 +36,7 @@ P3TERX/Actions-OpenWrt 的优势在于, 其可以独立于文件库存在, 可�
 - 自己的OpenWrt分支 ([Lean源](https://github.com/coolsnowwolf/lede)或者[官方源](https://github.com/openwrt/openwrt/))
 - 脑子
 
+
 ### 相关文章: 作者-糖炒栗子 
 
 - [面向小白的Github_Action使用workflow自动编译lean_openwrt教程](https://zhuanlan.zhihu.com/p/94402324)
