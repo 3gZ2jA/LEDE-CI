@@ -407,29 +407,29 @@ jobs:
           name: targets
           path: ./bin/targets/x86/64/
 
-      - name: Upload config.seed
+      - name: Upload config.buildinfo
         uses: actions/upload-artifact@master
         with:
-          name: config.seed
-          path: ./bin/targets/x86/64/config.seed
+          name: config.buildinfo
+          path: ./bin/targets/x86/64/config.buildinfo
 
-      - name: Upload openwrt-x86-64-combined-squashfs
+      - name: Upload openwrt-x86-64-generic-squashfs-combined.img
         uses: actions/upload-artifact@master
         with:
-          name: openwrt-x86-64-combined-squashfs
-          path: ./bin/targets/x86/64/openwrt-x86-64-combined-squashfs.img
+          name: openwrt-x86-64-generic-squashfs-combined.img
+          path: ./bin/targets/x86/64/openwrt-x86-64-generic-squashfs-combined.img
 
-      - name: Upload openwrt-x86-64-rootfs-squashfs
+      - name: Upload openwrt-x86-64-generic-squashfs-rootfs.img
         uses: actions/upload-artifact@master
         with:
-          name: openwrt-x86-64-rootfs-squashfs
-          path: ./bin/targets/x86/64/openwrt-x86-64-rootfs-squashfs.img
+          name: openwrt-x86-64-generic-squashfs-rootfs.img
+          path: ./bin/targets/x86/64/openwrt-x86-64-generic-squashfs-rootfs.img
 
-      - name: Upload openwrt-x86-64-uefi-gpt-squashfs
+      - name: Upload openwrt-x86-64-generic-squashfs-combined-efi.img
         uses: actions/upload-artifact@master
         with:
-          name: openwrt-x86-64-uefi-gpt-squashfs
-          path: ./bin/targets/x86/64/openwrt-x86-64-uefi-gpt-squashfs.img
+          name: openwrt-x86-64-generic-squashfs-combined-efi.img
+          path: ./bin/targets/x86/64/openwrt-x86-64-generic-squashfs-combined-efi.img
   release:
     name: Release
     needs: build
@@ -445,10 +445,10 @@ jobs:
       - name: Zip files
         run: |
           echo "::set-env name=TAG::$(date "+%F/%H-%M-%S")"
-          zip ./targets/config.zip ./targets/config.seed
-          zip ./targets/openwrt-x86-64-combined-squashfs.zip ./targets/openwrt-x86-64-combined-squashfs.img
-          zip ./targets/openwrt-x86-64-rootfs-squashfs.zip ./targets/openwrt-x86-64-rootfs-squashfs.img
-          zip ./targets/openwrt-x86-64-uefi-gpt-squashfs.zip ./targets/openwrt-x86-64-uefi-gpt-squashfs.img 
+          zip ./targets/config.buildinfo.zip ./targets/config.buildinfo
+          zip ./targets/openwrt-x86-64-generic-squashfs-combined.zip ./targets/openwrt-x86-64-generic-squashfs-combined.img
+          zip ./targets/openwrt-x86-64-generic-squashfs-rootfs.zip ./targets/openwrt-x86-64-generic-squashfs-rootfs.img
+          zip ./targets/openwrt-x86-64-generic-squashfs-combined-efi.zip ./targets/openwrt-x86-64-generic-squashfs-combined-efi.img
 
       - name: Create Release
         id: create_release
@@ -461,43 +461,43 @@ jobs:
           draft: false
           prerelease: false
 
-      - name: Upload config
+      - name: Upload config.buildinfo
         uses: actions/upload-release-asset@v1.0.1
         env:
           GITHUB_TOKEN: ${{ secrets.actions }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
-          asset_path: ./targets/config.zip
-          asset_name: config.zip
+          asset_path: ./targets/config.buildinfo.zip
+          asset_name: config.buildinfo.zip
           asset_content_type: application/zip
 
-      - name: Upload openwrt-x86-64-combined-squashfs
+      - name: Upload openwrt-x86-64-generic-squashfs-combined
         uses: actions/upload-release-asset@v1.0.1
         env:
           GITHUB_TOKEN: ${{ secrets.actions }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
-          asset_path: ./targets/openwrt-x86-64-combined-squashfs.zip
-          asset_name: openwrt-x86-64-combined-squashfs.zip
+          asset_path: ./targets/openwrt-x86-64-generic-squashfs-combined.zip
+          asset_name: openwrt-x86-64-generic-squashfs-combined.zip
           asset_content_type: application/zip
 
-      - name: Upload openwrt-x86-64-combined-squashfs
+      - name: Upload openwrt-x86-64-generic-squashfs-rootfs
         uses: actions/upload-release-asset@v1.0.1
         env:
           GITHUB_TOKEN: ${{ secrets.actions }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
-          asset_path: ./targets/openwrt-x86-64-rootfs-squashfs.zip
-          asset_name: openwrt-x86-64-rootfs-squashfs.zip
+          asset_path: ./targets/openwrt-x86-64-generic-squashfs-rootfs.zip
+          asset_name: openwrt-x86-64-generic-squashfs-rootfs.zip
           asset_content_type: application/zip
 
 
-      - name: Upload openwrt-x86-64-uefi-gpt-squashfs
+      - name: Upload openwrt-x86-64-generic-squashfs-combined-efi
         uses: actions/upload-release-asset@v1.0.1
         env:
           GITHUB_TOKEN: ${{ secrets.actions }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
-          asset_path: ./targets/openwrt-x86-64-uefi-gpt-squashfs.zip
-          asset_name: openwrt-x86-64-uefi-gpt-squashfs.zip
+          asset_path: ./targets/openwrt-x86-64-generic-squashfs-combined-efi.zip
+          asset_name: openwrt-x86-64-generic-squashfs-combined-efi.zip
           asset_content_type: application/zip
