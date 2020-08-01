@@ -376,6 +376,7 @@ jobs:
           du -h --max-depth=1 ./build_dir
           du -h --max-depth=1 ./bin
           du -h --max-depth=1 ./bin/targets
+          du -h --max-depth=1 ./bin/targets/x86/64
 
       #- name: Fake compile firmware
       #  run: |
