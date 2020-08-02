@@ -228,27 +228,27 @@ jobs:
           CONFIG_PACKAGE_luci-app-accesscontrol=y
           CONFIG_PACKAGE_luci-app-advanced-reboot=y
           CONFIG_PACKAGE_luci-app-airplay2=y
-          #CONFIG_PACKAGE_luci-app-amule=y
-          #CONFIG_PACKAGE_luci-app-aria2=y
+          CONFIG_PACKAGE_luci-app-amule=y
+          CONFIG_PACKAGE_luci-app-aria2=y
           CONFIG_PACKAGE_luci-app-arpbind=y
           CONFIG_PACKAGE_luci-app-autoreboot=y
-          #CONFIG_PACKAGE_luci-app-baidupcs-web=y
+          CONFIG_PACKAGE_luci-app-baidupcs-web=y
           CONFIG_PACKAGE_luci-app-banip=y
           CONFIG_PACKAGE_luci-app-commands=y
-          #CONFIG_PACKAGE_luci-app-ddns=y
+          CONFIG_PACKAGE_luci-app-ddns=y
           CONFIG_PACKAGE_luci-app-filetransfer=y
           CONFIG_PACKAGE_luci-app-firewall=y
           CONFIG_PACKAGE_luci-app-flowoffload=y
-          #CONFIG_PACKAGE_luci-app-frpc=y
-          #CONFIG_PACKAGE_luci-app-frps=y
+          CONFIG_PACKAGE_luci-app-frpc=y
+          CONFIG_PACKAGE_luci-app-frps=y
           CONFIG_PACKAGE_luci-app-hd-idle=y
           CONFIG_PACKAGE_luci-app-ipsec-vpnd=y
           CONFIG_PACKAGE_luci-app-minidlna=y
-          #CONFIG_PACKAGE_luci-app-music-remote-center=y
+          CONFIG_PACKAGE_luci-app-music-remote-center=y
           CONFIG_PACKAGE_luci-app-nlbwmon=y
           CONFIG_PACKAGE_luci-app-openvpn=y
           CONFIG_PACKAGE_luci-app-openvpn-server=y
-          #CONFIG_PACKAGE_luci-app-qbittorrent=y
+          CONFIG_PACKAGE_luci-app-qbittorrent=y
           CONFIG_PACKAGE_luci-app-qos=y
           CONFIG_PACKAGE_luci-app-ramfree=y
           CONFIG_PACKAGE_luci-app-samba4=y
@@ -262,10 +262,10 @@ jobs:
           CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_ShadowsocksR_Server=y
           CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_ShadowsocksR_Socks=y
           CONFIG_PACKAGE_luci-app-statistics=y
-          #CONFIG_PACKAGE_luci-app-transmission=y
+          CONFIG_PACKAGE_luci-app-transmission=y
           CONFIG_PACKAGE_luci-app-ttyd=y
           CONFIG_PACKAGE_luci-app-uhttpd=y
-          #CONFIG_PACKAGE_luci-app-unblockmusic=y
+          CONFIG_PACKAGE_luci-app-unblockmusic=y
           CONFIG_PACKAGE_luci-app-upnp=y
           CONFIG_PACKAGE_luci-app-vlmcsd=y
           CONFIG_PACKAGE_luci-app-vnstat=y
@@ -413,6 +413,12 @@ jobs:
           name: config.buildinfo
           path: ./bin/targets/x86/64/config.buildinfo
 
+      - name: Upload feeds.buildinfo
+        uses: actions/upload-artifact@master
+        with:
+          name: feeds.buildinfo
+          path: ./bin/targets/x86/64/feeds.buildinfo
+
       - name: Upload openwrt-x86-64-generic-squashfs-combined.img
         uses: actions/upload-artifact@master
         with:
@@ -446,6 +452,7 @@ jobs:
         run: |
           echo "::set-env name=TAG::$(date "+%F/%H-%M-%S")"
           zip ./targets/config.buildinfo.zip ./targets/config.buildinfo
+          zip ./targets/feeds.buildinfo.zip ./targets/feeds.buildinfo
           zip ./targets/openwrt-x86-64-generic-squashfs-combined.zip ./targets/openwrt-x86-64-generic-squashfs-combined.img
           zip ./targets/openwrt-x86-64-generic-squashfs-rootfs.zip ./targets/openwrt-x86-64-generic-squashfs-rootfs.img
           zip ./targets/openwrt-x86-64-generic-squashfs-combined-efi.zip ./targets/openwrt-x86-64-generic-squashfs-combined-efi.img
@@ -469,6 +476,16 @@ jobs:
           upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
           asset_path: ./targets/config.buildinfo.zip
           asset_name: config.buildinfo.zip
+          asset_content_type: application/zip
+
+      - name: Upload feeds.buildinfo
+        uses: actions/upload-release-asset@v1.0.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.actions }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
+          asset_path: ./targets/feeds.buildinfo.zip
+          asset_name: feeds.buildinfo.zip
           asset_content_type: application/zip
 
       - name: Upload openwrt-x86-64-generic-squashfs-combined
