@@ -2,14 +2,9 @@
 
 # 借助 GitHub Actions 的 OpenWrt 在线集成自动编译.
 
-<<<<<<< HEAD
+
 ## [![Build](https://img.shields.io/github/workflow/status/KFERMercer/OpenWrt/OpenWrt-CI/master?)](https://github.com/KFERMercer/OpenWrt/actions?query=workflow%3AOpenWrt-CI) [![Release](https://img.shields.io/github/release/KFERMercer/OpenWrt-CI?color=blue)](https://github.com/KFERMercer/OpenWrt-CI/releases)
-=======
-2. 命令行输入 `sudo apt-get update` ，然后输入
-`
-sudo apt-get -y install build-essential asciidoc binutils bzip2 gawk gettext git libncurses5-dev libz-dev patch python3 python2.7 unzip zlib1g-dev lib32gcc1 libc6-dev-i386 subversion flex uglifyjs git-core gcc-multilib p7zip p7zip-full msmtp libssl-dev texinfo libglib2.0-dev xmlto qemu-utils upx libelf-dev autoconf automake libtool autopoint device-tree-compiler g++-multilib antlr3 gperf wget curl swig rsync
-`
->>>>>>> a07a47018c823852d63ef36dc4c0711bc0062a75
+
 
 支持自动定制固件, 自动调整依赖及生成配置文件, 无需上传配置. 兼容 [coolsnowwolf/lede](https://github.com/coolsnowwolf/lede) 以及 OpenWrt trunk.
 
@@ -62,13 +57,9 @@ P3TERX/Actions-OpenWrt 的优势在于, 其可以独立于文件库存在, 可�
 
 我已经准备一个[正确的编写示例](https://github.com/KFERMercer/OpenWrt-by-lean/blob/CI-demo/.github/workflows/openwrt-ci.yml), 此配置基于 Lean 最新代码, 开启了所有预先写好的定制选项, 同时已经[经过测试](https://github.com/KFERMercer/OpenWrt-by-lean/commit/d31390d3e7b5f178d4e3456d401ded557c207398/checks?check_suite_id=334570354)可用. 如果你缺乏对自己的信心, 可以随意借鉴.
 
-<<<<<<< HEAD
+
 ### 5. 大功告成.
-=======
-Simply running `make` will build your firmware.
-It will download all sources, build the cross-compile toolchain,
-the kernel and all chosen applications.
->>>>>>> 9a482a15a3d14849b050ab7556ab9542b47b2c21
+
 
 集成编译环境会自动开始编译. 现在返回你的库首页, 点击页面上方的`Actions`按钮就可以查看进度.
 
