@@ -20,7 +20,8 @@ on:
 
 env:
   TZ: Asia/Shanghai
-
+  ACTIONS_ALLOW_UNSECURE_COMMANDS: true
+  
 jobs:
 
   build:
