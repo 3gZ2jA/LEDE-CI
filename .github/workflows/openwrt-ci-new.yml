@@ -397,6 +397,8 @@ jobs:
           echo "======================="
           df -h
           echo "======================="
+          ls -la ./bin/targets/x86/64/
+          echo "======================="
 
       - name: Delete packages
         run: |
