@@ -4,6 +4,19 @@
 
 # 借助 GitHub Actions 的 OpenWrt 在线集成自动编译.
 
+如何编译自己需要的 OpenWrt 固件
+-
+注意：
+-
+1. **不**要用 **root** 用户进行编译！！！
+2. 国内用户编译前最好准备好梯子
+3. 默认登陆IP 192.168.1.1 密码 password
+
+<<<<<<< HEAD
+=======
+编译命令如下:
+-
+1. 首先装好 Ubuntu 64bit，推荐 Ubuntu 20.04 LTS x64
 
 ## [![Build](https://img.shields.io/github/workflow/status/KFERMercer/OpenWrt/OpenWrt-CI/master?)](https://github.com/KFERMercer/OpenWrt/actions?query=workflow%3AOpenWrt-CI) [![Release](https://img.shields.io/github/release/KFERMercer/OpenWrt-CI?color=blue)](https://github.com/KFERMercer/OpenWrt-CI/releases)
 
@@ -14,6 +27,9 @@
 
 
 感谢[P3TERX](https://github.com/P3TERX/Actions-OpenWrt)珠玉在前.
+
+本套代码保证肯定可以编译成功。里面包括了 R21 所有源代码，包括 IPK 的。
+ 
 
 
 

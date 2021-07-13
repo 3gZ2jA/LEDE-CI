@@ -6,7 +6,7 @@ BOARDNAME:=Qualcomm Atheros IPQ40XX
 FEATURES:=squashfs fpu ramdisk nand
 CPU_TYPE:=cortex-a7
 CPU_SUBTYPE:=neon-vfpv4
-SUBTARGETS:=generic
+MAINTAINER:=John Crispin <john@phrozen.org>
 
 KERNEL_PATCHVER:=5.4
 
