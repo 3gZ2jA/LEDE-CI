@@ -422,11 +422,11 @@ jobs:
           name: feeds.buildinfo
           path: ./bin/targets/x86/64/feeds.buildinfo
 
-      - name: Upload openwrt-x86-64-generic-squashfs-combined.img
-        uses: actions/upload-artifact@master
-        with:
-          name: openwrt-x86-64-generic-squashfs-combined.img
-          path: ./bin/targets/x86/64/openwrt-x86-64-generic-squashfs-combined.img
+#       - name: Upload openwrt-x86-64-generic-squashfs-combined.img
+#         uses: actions/upload-artifact@master
+#         with:
+#           name: openwrt-x86-64-generic-squashfs-combined.img
+#           path: ./bin/targets/x86/64/openwrt-x86-64-generic-squashfs-combined.img
 
       - name: Upload openwrt-x86-64-generic-squashfs-rootfs.img
         uses: actions/upload-artifact@master
@@ -456,7 +456,6 @@ jobs:
           echo "::set-env name=TAG::$(date "+%F/%H-%M-%S")"
           zip ./targets/config.buildinfo.zip ./targets/config.buildinfo
           zip ./targets/feeds.buildinfo.zip ./targets/feeds.buildinfo
-          zip ./targets/openwrt-x86-64-generic-squashfs-combined.zip ./targets/openwrt-x86-64-generic-squashfs-combined.img
           zip ./targets/openwrt-x86-64-generic-squashfs-rootfs.zip ./targets/openwrt-x86-64-generic-squashfs-rootfs.img
           zip ./targets/openwrt-x86-64-generic-squashfs-combined-efi.zip ./targets/openwrt-x86-64-generic-squashfs-combined-efi.img
 
@@ -491,15 +490,15 @@ jobs:
           asset_name: feeds.buildinfo.zip
           asset_content_type: application/zip
 
-      - name: Upload openwrt-x86-64-generic-squashfs-combined
-        uses: actions/upload-release-asset@v1.0.1
-        env:
-          GITHUB_TOKEN: ${{ secrets.actions }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
-          asset_path: ./targets/openwrt-x86-64-generic-squashfs-combined.zip
-          asset_name: openwrt-x86-64-generic-squashfs-combined.zip
-          asset_content_type: application/zip
+#       - name: Upload openwrt-x86-64-generic-squashfs-combined
+#         uses: actions/upload-release-asset@v1.0.1
+#         env:
+#           GITHUB_TOKEN: ${{ secrets.actions }}
+#         with:
+#           upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
+#           asset_path: ./targets/openwrt-x86-64-generic-squashfs-combined.zip
+#           asset_name: openwrt-x86-64-generic-squashfs-combined.zip
+#           asset_content_type: application/zip
 
       - name: Upload openwrt-x86-64-generic-squashfs-rootfs
         uses: actions/upload-release-asset@v1.0.1
