@@ -12,8 +12,6 @@
 2. 国内用户编译前最好准备好梯子
 3. 默认登陆IP 192.168.1.1 密码 password
 
-
-=======
 编译命令如下:
 -
 1. 首先装好 Ubuntu 64bit，推荐 Ubuntu 20.04 LTS x64
@@ -64,6 +62,7 @@ P3TERX/Actions-OpenWrt 的优势在于, 其可以独立于文件库存在, 可�
 ### 1. 注册GitHub账号并开启GitHub Actions (自行搜索方法).
 
 ### 2. fork [coolsnowwolf/lede](https://github.com/coolsnowwolf/lede) 或者 [OpenWrt trunk](https://github.com/openwrt/openwrt).
+
 
 ### 3. 上传`openwrt-ci.yml`和`merge-upstream.yml`到`/.github/workflows/`下.
 
