@@ -33,6 +33,7 @@ jobs:
       run : |
         git config --global user.email "lqbz@live.com"
         git config --global user.name "3gZ2jA"
+        git config pull.rebase false
 
     - name: ls
       run:  ls -la
@@ -63,5 +64,4 @@ jobs:
         DOWNSTREAM_BRANCH: master
       run : |
         git add .
-        git config pull.rebase false
         git push origin $DOWNSTREAM_BRANCH --tags
