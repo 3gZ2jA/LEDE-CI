@@ -63,4 +63,5 @@ jobs:
         DOWNSTREAM_BRANCH: master
       run : |
         git add .
+        git config pull.rebase false
         git push origin $DOWNSTREAM_BRANCH --tags
