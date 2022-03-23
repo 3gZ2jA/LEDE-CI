@@ -4,6 +4,11 @@
 
 # 借助 GitHub Actions 的 OpenWrt 在线集成自动编译.
 
+-
+QCA IPQ6000 (GL.iNet GL-AX1800)系列固件仓库地址：
+[https://github.com/coolsnowwolf/openwrt-gl-ax1800](https://github.com/coolsnowwolf/openwrt-gl-ax1800)
+-
+
 如何编译自己需要的 OpenWrt 固件
 -
 注意：
